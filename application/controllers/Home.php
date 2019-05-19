@@ -282,9 +282,13 @@
 			$data['orders'] = $this->home_model->get_all_orders();
 			$this->load->view('pages/manage_orders.php', $data);
 		}
-		public function editOrder($param) {
+		public function editOrder($param=null) {
 			if($this->session->userdata('id')==''){
 				redirect('login');
+			}
+			if($this->session->userdata('level')==1){
+				echo "Forbidden Access";
+				redirect('Home/index');
 			}
 			$order_id=base64_decode(urldecode($param));
 			if($order_id){
