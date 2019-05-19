@@ -238,5 +238,75 @@
 				redirect('home/addNewProduct');
 			}
 		}
+		public function orderHistory() {
+			if($this->session->userdata('id')==''){
+				redirect('login');
+			}
+			$data['js'] = $this->load->view('include/javascript.php', NULL, TRUE);
+			$data['css'] = $this->load->view('include/css.php', NULL, TRUE);
+			$data['header'] = $this->load->view('pages/header.php', NULL, TRUE);
+			$data['footer'] = $this->load->view('pages/footer.php', NULL, TRUE);
+			$data['orders'] = $this->home_model->get_orders_by_user_id($this->session->userdata('id'));
+			$this->load->view('pages/order_history.php', $data);
+		}
+		public function orderDetails($param=null) {
+			if($this->session->userdata('id')==''){
+				redirect('login');
+			}
+			$order_id=base64_decode(urldecode($param));
+			if($order_id){
+				$data['js'] = $this->load->view('include/javascript.php', NULL, TRUE);
+				$data['css'] = $this->load->view('include/css.php', NULL, TRUE);
+				$data['header'] = $this->load->view('pages/header.php', NULL, TRUE);
+				$data['footer'] = $this->load->view('pages/footer.php', NULL, TRUE);
+				$data['order'] = $this->home_model->get_order_by_order_id($order_id);
+				$data['order_details']=$this->home_model->get_order_details_by_id($order_id);
+				$this->load->view('pages/order_details.php', $data);
+			}
+			else{
+				echo 'There is an error';
+			}
+		}
+		public function manageOrders() {
+			if($this->session->userdata('id')==''){
+				redirect('login');
+			}
+			if($this->session->userdata('level')==1){
+				echo "Forbidden Access";
+				redirect('Home/index');
+			}
+			$data['js'] = $this->load->view('include/javascript.php', NULL, TRUE);
+			$data['css'] = $this->load->view('include/css.php', NULL, TRUE);
+			$data['header'] = $this->load->view('pages/header.php', NULL, TRUE);
+			$data['footer'] = $this->load->view('pages/footer.php', NULL, TRUE);
+			$data['orders'] = $this->home_model->get_all_orders();
+			$this->load->view('pages/manage_orders.php', $data);
+		}
+		public function editOrder($param) {
+			if($this->session->userdata('id')==''){
+				redirect('login');
+			}
+			$order_id=base64_decode(urldecode($param));
+			if($order_id){
+				$data['js'] = $this->load->view('include/javascript.php', NULL, TRUE);
+				$data['css'] = $this->load->view('include/css.php', NULL, TRUE);
+				$data['header'] = $this->load->view('pages/header.php', NULL, TRUE);
+				$data['footer'] = $this->load->view('pages/footer.php', NULL, TRUE);
+				$data['order'] = $this->home_model->get_order_by_order_id($order_id);
+				$data['order_details']=$this->home_model->get_order_details_by_id($order_id);
+				$this->load->view('pages/edit_order.php', $data);
+			}
+			else{
+				echo 'There is an error';
+				redirect('Home/index', 'refresh');
+			}
+		}
+		public function edit_action() {
+			if(isset($_POST["submit"])) {
+				$this->home_model->update_order($this->input->post('order_id'),$this->input->post('tracking_number'),$this->input->post('order_status'));
+				echo "Entry updated, redirecting...";
+			}
+			redirect('Home/manageOrders', 'refresh');
+		}
 	}
 ?>
