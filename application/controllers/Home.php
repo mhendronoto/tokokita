@@ -144,7 +144,7 @@
 			}
 		}
 
-		public function add_to_shopping_cart_detail($product_id){
+		public function add_to_shopping_cart_detail($product_id,$quantity){
 			if($this->session->userdata('id')==''){
 				redirect('login');
 			}

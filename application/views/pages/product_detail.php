@@ -67,7 +67,7 @@
 			      </div>
 
 			      <div class="modal-body">
-			        <form action="" method="post">
+			        <form action="<?php echo site_url("/Home/add_to_shopping_cart_detail/".$id."/") ?>" method="post" id="form_quantity">
 			        	<div class="form-group">
 							<div class="input-group col-sm-6" >
 						          <span class="input-group-btn">
@@ -86,7 +86,7 @@
 			        </form>
 			      </div>
 			      <div class="modal-footer">
-			      	<button type="button" class="btn btn-default">Confirm</button>
+			      	<button type="submit" class="btn btn-default" form="form_quantity">Confirm</button>
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			      </div>
 			    </div>
