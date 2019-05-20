@@ -291,15 +291,19 @@
 			if(!$this->upload->do_upload('fileGambar')){
 				echo $this->upload->display_errors();
 			}
+			$data = $this->upload->data();
+	            $imagename = $data['file_name'];
 
-			
-				// $name  = $this->input->post('name');
-				// $price  = $this->input->post('price');
-				// $weight = $this->input->post('weight');
-				// $detail = $this->input->post('detail');
-				// $id = $this->home_model->addNewProduct($name,$price,$weight,$detail);
-				// $this->session->set_flashdata('message', 'Product berhasil ditambahkan');
-				// redirect('home/addNewProduct');
+
+				$name  = $this->input->post('name');
+				$price  = $this->input->post('price');
+				$weight = $this->input->post('weight');
+				$detail = $this->input->post('detail');
+				$imgname2 = "assets/images/".$imagename;
+				echo $imgname2;
+				$id = $this->home_model->addNewProduct($name,$price,$weight,$detail,$imgname2);
+				$this->session->set_flashdata('message', 'Product berhasil ditambahkan');
+				redirect('home/addNewProduct');
 			}
 			else{
 				$this->session->set_flashdata('message', 'Kolom tidak boleh kosong!');

@@ -86,10 +86,10 @@
 			return $query->result_array();
 		}
 
-		function addNewProduct($name,$price,$weight,$detail){
+		function addNewProduct($name,$price,$weight,$detail,$imgname){
 			$query = $this->db->query("
 				INSERT INTO products(product_name,product_price,product_weight,product_detail,product_stock,product_path_image,category_id)
-				VALUES('$name','$price','$weight','$detail',100,'assets/images/coca_cola.jpg',1)");
+				VALUES('$name','$price','$weight','$detail',100,'$imgname',1)");
 			if($query == true){
 				return true;
 			}
