@@ -130,6 +130,12 @@
 			$this->db->where('order_id',$order_id);
 			$this->db->update('orders',$values);
 		}
+		function delete_order($order_id) {
+			$this->db->trans_start();
+			$this->db->delete('order_details', array('order_id' => $order_id)); 
+			$this->db->delete('orders', array('order_id' => $order_id)); 
+			$this->db->trans_complete();
+		}
 		// function delete(){
 		// 	$this->db->WHERE('product_id', $this->input->post('product_id'));
 		// 	$this->db->delete('shopping_carts');

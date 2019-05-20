@@ -46,6 +46,12 @@
 								echo "<span class='glyphicon glyphicon-edit'></span>";
 								echo "</button>";
 							echo "</a>";
+								echo "<a href='delete_action/".urlencode(base64_encode($order_id))."'
+								style='margin-right:10px;color:rgb(255,50,150);'>";
+								echo "<button class='btn'>";
+								echo "<span class='glyphicon glyphicon-remove'></span>";
+								echo "</button>";
+							echo "</a>";
 						echo "</td>";
 					echo "</tr>";
 				}

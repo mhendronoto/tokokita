@@ -48,8 +48,8 @@
 		    	<?php  
 				  	if($this->session->userdata('level')==0){
 				  		echo "<li><a href='".base_url('index.php/Home/openShoppingCart')."'>Admin Shopping Cart <!-- <span class='badge' style='background-color: red; margin-bottom: 5px;''>1</span> --></a></li>";
-						echo "<li ><a style='color:white;' class='btn btn-success' href='".base_url("index.php/Home/addNewProduct")."'>Add Product</a></li>";
-				  		echo "<li ><a style='color:white;' class='btn btn-success' href='".base_url("index.php/Home/manageOrders")."'>Manage Order</a></li>";
+				  		echo "<li ><a style='color:white;' class='btn btn-success' href='".base_url("index.php/Home/adminDashboard")."'>Admin Dashboard</a></li>";
+						  
 					
 					}
 				  	else if($this->session->userdata('level')==1){

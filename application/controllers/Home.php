@@ -357,6 +357,22 @@
 			}
 
 		}
+		public function adminDashboard() {
+			if($this->session->userdata('id')==''){
+				redirect('login');
+			}
+			if($this->session->userdata('level')==1){
+				echo "Forbidden Access";
+				//redirect('Home/index');
+			}
+			else {
+				$data['js'] = $this->load->view('include/javascript.php', NULL, TRUE);
+				$data['css'] = $this->load->view('include/css.php', NULL, TRUE);
+				$data['header'] = $this->load->view('pages/header.php', NULL, TRUE);
+				$data['footer'] = $this->load->view('pages/footer.php', NULL, TRUE);
+				$this->load->view('pages/admin_dashboard.php', $data);
+			}
+		}
 		public function editOrder($param=null) {
 			if($this->session->userdata('id')==''){
 				redirect('login');
@@ -389,5 +405,24 @@
 				//echo "Entry updated, redirecting...";
 			}
 			redirect('Home/manageOrders', 'refresh');
+		}
+		public function delete_action($param=null) {
+			if($this->session->userdata('id')==''){
+				redirect('login');
+			}
+			if($this->session->userdata('level')==1){
+				echo "Forbidden Access";
+				//redirect('Home/index');
+			}
+			else {
+				$order_id=base64_decode(urldecode($param));
+				if($order_id){
+					$this->home_model->delete_order($order_id);
+					redirect('Home/manageOrders', 'refresh');
+				}
+				else {
+					echo 'There is an error';
+				}
+			}
 		}
 	}
