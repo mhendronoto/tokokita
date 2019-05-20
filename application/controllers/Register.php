@@ -72,7 +72,7 @@ Thanks
 						$result = $this->email->send();
 						if($result)
 						{
-							echo "berhasil";
+							//echo "berhasil";
 							$this->session->set_flashdata('message', 'Check in your email for email verification mail');
 							redirect('register');
 						}
