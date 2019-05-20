@@ -11,7 +11,7 @@
 	<div class="page-wrapper bg-red p-t-100 p-b-100 font-robo">
 		<div class="wrapper wrapper--w960">
 			<div class="card card-2">
-				<div class="card-heading"></div>
+				<a class="card-heading" href="<?php echo site_url(); ?>"></a>
 				<div class="card-body">
 					<h2 class="title">Registration</h2>
 					<?php
