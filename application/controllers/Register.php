@@ -44,47 +44,51 @@
 				$id = $this->register_model->insert($data);
 				$this->session->set_flashdata('message', 'Register berhasil');
 				redirect('register');
-				// if($id > 0)
-				// {
-				// 	echo "string";
-				// 	$subject = "Please verify email for login";
-				// 	$message = "
-				// 		<p>Hi ".$this->input->post('user_name')."</p>
-				// 		<p>This is email verification mail from Codeigniter Login Register system. For complete registration process and login into system. First you want to verify you email by click this <a href='".base_url()."register/verify_email/".$verification_key."'>link</a>.</p>
-				// 		<p>Once you click this link your email will be verified and you can login into system.</p>
-				// 		<p>Thanks,</p>
-				// 		";
-				// 		$config = array(
-				// 			'protocol'  => 'smtp',
-				// 	    	'smtp_host' => 'ssl://smtp.googlemail.com',
-				// 	    	'smtp_port' => 465,
-				// 	    	'smtp_user'  => 'indragxp@gmail.com', 
-				// 	        'smtp_pass'  => 'gremonia1200', 
-				// 	     	'mailtype'  => 'html',
-				// 	     	'charset'    => 'iso-8859-1',
-				// 	        'wordwrap'   => TRUE
-				// 		);
-				// 		$this->load->library('email', $config);
-				// 		$this->email->set_newline("\r\n");
-				// 		$this->email->from('noreply-indragxp@gmail.com');
-				// 		// $this->email->to($this->input->post('user_email'));
-				// 		$this->email->to('indragunawanxiaopingping@gmail.com');
-				// 		$this->email->subject($subject);
-				// 		$this->email->message($message);
-				// 		$result = $this->email->send();
-				// 		if($this->email->send())
-				// 		{
-				// 			echo "berhasil";
-				// 			$this->session->set_flashdata('message', 'Check in your email for email verification mail');
-				// 			redirect('register');
-				// 		}
-				// 		echo "string";
-				// }
+				if($id > 0)
+				{
+					echo "string";
+					$subject = "Please verify email for login";
+					$message = "
+						<p>Hi ".$this->input->post('user_name')."</p>
+						<p>This is email verification mail from Codeigniter Login Register system. For complete registration process and login into system. First you want to verify you email by click this <a href='".base_url()."register/verify_email/".$verification_key."/".$id."'>link</a>.</p>
+						<p>Once you click this link your email will be verified and you can login into system.</p>
+						<p>Thanks,</p>
+						";
+						$config = array(
+							'protocol'  => 'smtp',
+					    	'smtp_host' => 'ssl://smtp.googlemail.com',
+					    	'smtp_port' => 465,
+					    	'smtp_user'  => 'ourtoko2019@gmail.com', 
+					        'smtp_pass'  => '=tokokita2019', 
+					     	'mailtype'  => 'html',
+					     	'charset'    => 'iso-8859-1',
+					        'wordwrap'   => TRUE
+						);
+						$this->load->library('email', $config);
+						$this->email->set_newline("\r\n");
+						$this->email->from('noreply-ourtoko2019@gmail.com');
+						// $this->email->to($this->input->post('user_email'));
+						$this->email->to($this->input->post('user_email'));
+						$this->email->subject($subject);
+						$this->email->message($message);
+						$result = $this->email->send();
+						if($this->email->send())
+						{
+							echo "berhasil";
+							$this->session->set_flashdata('message', 'Check in your email for email verification mail');
+							redirect('register');
+						}
+						echo "string";
+				}
 			}
 			else
 			{
 				$this->index();
 			}
+		}
+
+		function verify_email($verification_key,$id){
+			$this->register_model->verify_email($verification_key,$id);
 		}
 	}
 ?>

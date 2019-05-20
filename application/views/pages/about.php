@@ -54,8 +54,6 @@
             </div>
         </div>
     </div>
-
-    <br><br><br>
 	
 	<?php echo $footer; ?>
 </body>

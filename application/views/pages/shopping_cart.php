@@ -93,7 +93,7 @@
 									echo "<td>" . $qty_per_unit . "</td>";
 									echo "<td>" . $date . "</td>";
 									
-									echo "<td>" . $price . "</td>";
+									echo "<td>Rp. " . $price . ", -</td>";
 									// echo "<td></td>";
 								echo "</tr>";
 								$totalprice += $price;
@@ -101,7 +101,7 @@
 						}
 						echo '<tfoot>
 								<td colspan="3">Total Price</td>
-								<td colspan="1">'.$totalprice.'</td>
+								<td colspan="1">Rp. '.$totalprice.', -</td>
 								<td colspan="1"></td>
 							</tfoot>';
 					?>
@@ -122,21 +122,21 @@
 			<button>Check</button>
 		</div> -->
 
-		<div style="text-align: center">
+		<!-- <div style="text-align: center">
 			<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Confirm</button>
 		</div>
-		<!-- Modal -->
+		Modal --
 		<div id="myModal" class="modal fade" role="dialog">
 		  <div class="modal-dialog">
 
-		    <!-- Modal content-->
+		    Modal content-
 		    <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal">&times;</button>
 		        <h4 class="modal-title">Payment</h4>
 		      </div>
 		      <div class="modal-body">
-		        <p>Your total Price is : <?php echo $totalprice; ?></p>
+		        <p>Your total Price is : <?php // $totalprice; ?></p>
 		        <p>Please Input Bayaran : </p>
 		        <form action="" method="post">
 		        	<div class="form-group">
@@ -152,7 +152,9 @@
 
 		  </div>
 		</div>
-	</div>
+	</div> -->
+
+
 	
 	<?php echo $footer; ?>
 </body>

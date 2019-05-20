@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Complete User Registration and Login System in Codeigniter</title>
+    <title>Login - Akun tokokita</title>
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" /> -->
     <?php 
         echo $js;
@@ -20,7 +20,7 @@
                     if($this->session->flashdata('message'))
                         {
                             echo '
-                            <div class="alert alert-success">
+                            <div style="color:red;">
                                 '.$this->session->flashdata("message").'
                             </div>
                             ';

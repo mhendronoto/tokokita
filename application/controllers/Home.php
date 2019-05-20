@@ -43,7 +43,7 @@
 					$output .= '
 						<img src="'.base_url().$row->product_path_image.'" width="auto" height="268px" style="padding-bottom:10px">
 						<p><b>'.$row->product_name.'</b></p>
-						<p>Rp. '.$row->product_price.'</p>
+						<p>Rp. '.$row->product_price.', -</p>
 						<a class="btn btn-info" href="'.base_url('index.php/Home/open_detail/').$row->product_id.'">Details</a>
 						<a class="btn btn-warning" href="'.base_url('index.php/Home/add_to_shopping_cart_home/').$this->session->userdata('id').'/'.$row->product_id.'/'.'1/'.$row->product_price.'">Add to Cart</a>
 					';	
