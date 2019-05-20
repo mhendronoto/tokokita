@@ -29,7 +29,12 @@
 							';
 						}
 					?>
-	  <form class="form-horizontal" action="<?php echo base_url('index.php/Home/validationNewProduct') ?>" method="POST">
+	
+	<?php 
+	$attributes = array('class' => 'form-horizontal', 'id' => 'myform');
+	echo form_open_multipart('Home/validationNewProduct', $attributes);
+ 	?>
+	  <!-- <form class="form-horizontal" action="<?php echo base_url('index.php/Home/validationNewProduct') ?>" method="POST"> -->
 	    <div class="form-group">
 	      <label class="control-label col-sm-2" for="name">Product Name:</label>
 	      <div class="col-sm-10">
@@ -55,12 +60,15 @@
 	      </div>
 	    </div>
 
+		<input type='file' name='fileGambar' size='20' />
+
 	    <div class="form-group">        
 	      <div class="col-sm-offset-2 col-sm-10">
 	        <button type="submit" class="btn btn-default">Submit</button>
 	      </div>
 	    </div>
-	  </form>
+	  <!-- </form> -->
+	  <?php form_close(); ?>
 	</div>
 	
 	<?php echo $footer; ?>

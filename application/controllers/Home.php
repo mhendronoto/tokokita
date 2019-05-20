@@ -268,6 +268,8 @@
 			$data['footer'] = $this->load->view('pages/footer.php', NULL, TRUE);
 
 			$this->load->view('pages/insertProduct.php', $data);
+
+
 		}
 
 		public function validationNewProduct(){
@@ -277,13 +279,27 @@
 			$this->form_validation->set_rules('detail', 'detail', 'required');	
 			if($this->form_validation->run())
 			{
-				$name  = $this->input->post('name');
-				$price  = $this->input->post('price');
-				$weight = $this->input->post('weight');
-				$detail = $this->input->post('detail');
-				$id = $this->home_model->addNewProduct($name,$price,$weight,$detail);
-				$this->session->set_flashdata('message', 'Product berhasil ditambahkan');
-				redirect('home/addNewProduct');
+			$config = array(
+			'upload_path' => "./assets/images",
+			'allowed_types' => "gif|jpg|png|jpeg|pdf",
+			'overwrite' => TRUE,
+			'max_size' => "20480000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
+			// 'max_height' => "768",
+			// 'max_width' => "1024"
+			);
+			$this->load->library('upload', $config);
+			if(!$this->upload->do_upload('fileGambar')){
+				echo $this->upload->display_errors();
+			}
+
+			
+				// $name  = $this->input->post('name');
+				// $price  = $this->input->post('price');
+				// $weight = $this->input->post('weight');
+				// $detail = $this->input->post('detail');
+				// $id = $this->home_model->addNewProduct($name,$price,$weight,$detail);
+				// $this->session->set_flashdata('message', 'Product berhasil ditambahkan');
+				// redirect('home/addNewProduct');
 			}
 			else{
 				$this->session->set_flashdata('message', 'Kolom tidak boleh kosong!');
