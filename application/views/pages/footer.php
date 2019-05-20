@@ -1,3 +1,5 @@
+<br><br><br>
+
 <div class="text-center footer">
 	<p>&copy; 2019 tokokita Indonesia</p>
 </div>
