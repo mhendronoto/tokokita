@@ -59,7 +59,7 @@ Thanks
 					        'smtp_pass'  => '=tokokita2019', 
 					     	'mailtype'  => 'html',
 					     	'charset' => 'utf-8',
-					     	'charset'    => 'iso-8859-1',
+					     	// 'charset'    => 'iso-8859-1',
 					        'wordwrap'   => TRUE
 						);
 						$this->load->library('email', $config);

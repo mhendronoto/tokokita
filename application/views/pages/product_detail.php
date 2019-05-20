@@ -52,12 +52,12 @@
 	</div>
 
 
-			 <div style="text-align: center">
+			<!--  <div style="text-align: center">
 				<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Confirm</button>
-			</div>
+			</div> -->
 			<!-- Modal -- -->
 			<div id="myModal" class="modal fade" role="dialog">
-			  <div class="modal-dialog">
+			  <div class="modal-dialog modal-sm">
 
 			   <!-- Modal content- -->
 			    <div class="modal-content">
@@ -69,7 +69,7 @@
 			      <div class="modal-body">
 			        <form action="" method="post">
 			        	<div class="form-group">
-							<div class="input-group col-sm-4" >
+							<div class="input-group col-sm-6" >
 						          <span class="input-group-btn">
 						              <button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="qty">
 						                <span class="glyphicon glyphicon-minus"></span>
@@ -86,11 +86,13 @@
 			        </form>
 			      </div>
 			      <div class="modal-footer">
+			      	<button type="button" class="btn btn-default">Confirm</button>
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			      </div>
 			    </div>
 
 			  </div>
+			</div>
 
 
 	<?php echo $footer; ?>
