@@ -48,8 +48,8 @@
 			return $query->result_array();
 		}
 
-		function addToShoppingCart($id){
-			$query = $this->db->query("INSERT INTO shopping_carts(user_id, product_id,quantity_shopping) VALUES(1,$id,1)");
+		function addToShoppingCart($p_id,$quantity,$u_id){
+			$query = $this->db->query("INSERT INTO shopping_carts(user_id, product_id,quantity_shopping) VALUES($u_id,$p_id,$quantity)");
 			if($query == true){
 				return true;
 			}

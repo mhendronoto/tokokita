@@ -67,7 +67,7 @@
 			      </div>
 
 			      <div class="modal-body">
-			        <form action="<?php echo site_url("/Home/add_to_shopping_cart_detail/".$id."/") ?>" method="post" id="form_quantity">
+			        <form action="<?php echo site_url("/Home/add_to_shopping_cart_detail/".$id) ?>" method="post" id="form_quantity">
 			        	<div class="form-group">
 							<div class="input-group col-sm-6" >
 						          <span class="input-group-btn">
