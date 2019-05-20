@@ -105,6 +105,31 @@
 			return $query->result_array();
 		}
 
+		function get_all_orders() {
+			$query = $this->db->query("SELECT o1.order_id, o1.tracking_number, o2.description, o1.order_date FROM orders as o1, order_status as o2 WHERE o1.order_status_id=o2.order_status_id");
+			return $query->result_array();
+		}
+		function get_orders_by_user_id($id) {
+			$query = $this->db->query("SELECT o1.order_id, o1.tracking_number, o2.description, o1.order_date FROM orders as o1, order_status as o2 WHERE o1.order_status_id=o2.order_status_id AND o1.user_id=$id");
+			return $query->result_array();
+		}
+		function get_order_by_order_id($id) {
+			$query = $this->db->query("SELECT o1.order_id, o1.tracking_number, o2.description, o1.order_date FROM orders as o1, order_status as o2 WHERE o1.order_status_id=o2.order_status_id AND o1.order_id=$id");
+			return $query->row();
+		}
+		function get_order_details_by_id($id) {
+			$query = $this->db->query("SELECT p1.product_id, p1.product_name, o2.quantity_shopping, p1.product_price*o2.quantity_shopping as sum_price FROM orders as o1, order_details as o2, products as p1 WHERE o1.order_id=o2.order_id AND o2.product_id=p1.product_id AND o1.order_id=$id");
+			return $query->result_array();
+		}
+		function update_order($order_id, $tracking_number, $status_id) {
+			$values=array(
+				'order_id'=>$order_id,
+				'tracking_number' => $tracking_number,
+				'order_status_id' => $status_id,
+			);		
+			$this->db->where('order_id',$order_id);
+			$this->db->update('orders',$values);
+		}
 		// function delete(){
 		// 	$this->db->WHERE('product_id', $this->input->post('product_id'));
 		// 	$this->db->delete('shopping_carts');

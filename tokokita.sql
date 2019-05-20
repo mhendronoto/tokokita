@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 14, 2019 at 03:30 AM
--- Server version: 5.7.24
+-- Generation Time: May 19, 2019 at 08:54 AM
+-- Server version: 5.7.13-log
 -- PHP Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -70,7 +70,72 @@ INSERT INTO `codeigniter_register` (`id`, `name`, `email`, `password`, `verifica
 (2, 'a', 'a@a.com', '$2a$08$br1962nki0sclmA1YBed0uW1fo3RsVdW16LlYFfP6jvA1596KojzW', '909ac233fe697f2fa6608dc676284425', 'no', 1),
 (3, 'b', 'b@b.com', '$2a$08$JNCR2mHFbDm3RExrjt0X4eRKaDYE3KaeySNV1qCkGiGW8CY78dcxm', 'bd702dd7048797ca9d796228383d365d', 'no', 1),
 (5, 'septiandy', 'septiandy@student.umn.ac.id', '$2a$08$IIaegquUxV15WJpcqQktnOL7ui/FAM5B5PoEDjRRDYYtrOAZVhAF.', 'e9d0494e47579fe8bf1396b9d3da0422', 'no', 1),
-(6, 'haha', 'haha@haha.com', '$2a$08$HGrD0ZGL9PxpdNuGWrqwLOpO4AIEDntZns5gnNpYxFiTmqQZPHrPu', '8aae9b8a2f50e8f3b98437f1e9b73925', 'no', 1);
+(6, 'haha', 'haha@haha.com', '$2a$08$HGrD0ZGL9PxpdNuGWrqwLOpO4AIEDntZns5gnNpYxFiTmqQZPHrPu', '8aae9b8a2f50e8f3b98437f1e9b73925', 'no', 1),
+(7, 'JS', 'js@js.com', '$2a$08$/iQVWujtyNaZYLzq34QhJeuimtk14fc2q6z8TrqWhgSphoUhi3aK2', 'a0bd176ecd1a0cea3aff2604bea512d9', 'no', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `order_status_id` int(11) NOT NULL,
+  `tracking_number` varchar(255) NOT NULL,
+  `order_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `user_id`, `order_status_id`, `tracking_number`, `order_date`) VALUES
+(1, 7, 1, '123123123123', '2019-05-09 14:36:26'),
+(2, 7, 4, 'E12227', '2019-05-09 14:35:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_details`
+--
+
+CREATE TABLE `order_details` (
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity_shopping` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`order_id`, `product_id`, `quantity_shopping`) VALUES
+(1, 5, 3),
+(1, 8, 2),
+(2, 5, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_status`
+--
+
+CREATE TABLE `order_status` (
+  `order_status_id` int(11) NOT NULL,
+  `description` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_status`
+--
+
+INSERT INTO `order_status` (`order_status_id`, `description`) VALUES
+(1, 'Pending'),
+(2, 'Processing'),
+(3, 'Shipping'),
+(4, 'Completed');
 
 -- --------------------------------------------------------
 
@@ -194,6 +259,27 @@ ALTER TABLE `codeigniter_register`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`),
+  ADD KEY `order_status_id` (`order_status_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Indexes for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- Indexes for table `order_status`
+--
+ALTER TABLE `order_status`
+  ADD PRIMARY KEY (`order_status_id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -229,13 +315,25 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `codeigniter_register`
 --
 ALTER TABLE `codeigniter_register`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `order_status`
+--
+ALTER TABLE `order_status`
+  MODIFY `order_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `shopping_carts`
@@ -252,6 +350,20 @@ ALTER TABLE `transaction`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `order_status_id` FOREIGN KEY (`order_status_id`) REFERENCES `order_status` (`order_status_id`),
+  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `codeigniter_register` (`id`);
+
+--
+-- Constraints for table `order_details`
+--
+ALTER TABLE `order_details`
+  ADD CONSTRAINT `order_id` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
+  ADD CONSTRAINT `product_id` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
 
 --
 -- Constraints for table `products`
