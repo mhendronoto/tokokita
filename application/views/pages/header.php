@@ -54,7 +54,7 @@
 					}
 				  	else if($this->session->userdata('level')==1){
 						  echo "<li><a href='".base_url('index.php/Home/openShoppingCart')."'>User Shopping Cart <!-- <span class='badge' style='background-color: red; margin-bottom: 5px;''>1</span> --></a></li>";
-						  echo "<li><a href='".base_url('index.php/Home/order_history')."'>User Order History</a></li>";
+						  echo "<li><a href='".base_url('index.php/Home/orderHistory')."'>User Order History</a></li>";
 					}
 			  	?>
 		    	<li><a href="<?php echo base_url('index.php/Home/openAbout'); ?>">About</a></li>

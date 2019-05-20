@@ -118,7 +118,7 @@
 			return $query->row();
 		}
 		function get_order_details_by_id($id) {
-			$query = $this->db->query("SELECT p1.product_name, o2.quantity_shopping, p1.product_price*o2.quantity_shopping as sum_price FROM orders as o1, order_details as o2, products as p1 WHERE o1.order_id=o2.order_id AND o2.product_id=p1.product_id AND o1.order_id=$id");
+			$query = $this->db->query("SELECT p1.product_id, p1.product_name, o2.quantity_shopping, p1.product_price*o2.quantity_shopping as sum_price FROM orders as o1, order_details as o2, products as p1 WHERE o1.order_id=o2.order_id AND o2.product_id=p1.product_id AND o1.order_id=$id");
 			return $query->result_array();
 		}
 		function update_order($order_id, $tracking_number, $status_id) {

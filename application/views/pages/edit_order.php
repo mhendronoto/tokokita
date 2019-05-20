@@ -59,12 +59,13 @@
 			<tbody>
 			<?php 
 				foreach ($order_details as $row) {
+					$product_id = $row['product_id'];
 					$product_name = $row['product_name'];
 					$qty_per_unit = $row['quantity_shopping'];
 					$price = $row['sum_price'];
 
 					echo "<tr>";
-						echo "<td>" . $product_name . "</td>";
+					echo "<td><a href='".base_url('index.php/Home/open_detail/').$product_id."'>". $product_name . "</a></td>";
 						echo "<td>" . $qty_per_unit . "</td>";
 						echo "<td>" . $price . "</td>";
 						// echo "<td></td>";
