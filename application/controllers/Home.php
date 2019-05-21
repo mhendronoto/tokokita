@@ -190,6 +190,16 @@
 			$this->load->view('pages/profile.php', $data);
 		}
 
+
+		public function updateProfilePass($id){
+			// $this->register_model($id,$this->input->post('new_pass'));
+			redirect('home');
+		}
+
+		public function updateProfileAddress($id){
+			redirect('home');
+		}
+
 		public function addNewProduct(){
 			if($this->session->userdata('id')==''){
 				redirect('login');
