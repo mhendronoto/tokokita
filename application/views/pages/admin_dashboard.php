@@ -22,8 +22,12 @@
                <a href="<?php echo base_url("index.php/Home/addNewProduct"); ?>" class="btn btn-success btn-lg btn-block btn-huge">Add Product</a>
          </div>
          <div class="col-md-3">
+               <a href="<?php echo base_url("index.php/Home/manageOrders"); ?>" class="btn btn-success btn-lg btn-block btn-huge">Edit Product</a>
+         </div>
+         <div class="col-md-3">
                <a href="<?php echo base_url("index.php/Home/manageOrders"); ?>" class="btn btn-success btn-lg btn-block btn-huge">Manage Order</a>
          </div>
+         
          <!-- <div class="col-md-3">
                <a href="#" class="btn btn-success btn-lg btn-block btn-huge">Test button</a>
          </div>

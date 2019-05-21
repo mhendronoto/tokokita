@@ -49,7 +49,15 @@
 		}
 
 		function addToShoppingCart($p_id,$quantity,$u_id){
-			$query = $this->db->query("INSERT INTO shopping_carts(user_id, product_id,quantity_shopping) VALUES($u_id,$p_id,$quantity)");
+			$query_check = $this->db->query("SELECT * FROM shopping_carts WHERE product_id = $p_id");
+			$query='';
+			if($query_check->num_rows()){
+				$query = $this->db->query("UPDATE shopping_carts SET quantity_shopping = $quantity WHERE product_id=$p_id");
+			}
+			else{
+				$query = $this->db->query("INSERT INTO shopping_carts(user_id, product_id,quantity_shopping) VALUES($u_id,$p_id,$quantity)");
+			}
+			
 			if($query == true){
 				return true;
 			}
