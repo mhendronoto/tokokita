@@ -227,7 +227,7 @@
 			if($this->session->userdata('id')==''){
 				redirect('login');
 			}
-			$data['sc_product'] = $this->home_model->getProductFromCart();
+			$data['sc_product'] = $this->home_model->getProductFromCart($this->session->userdata('id'));
 			$data['daftar_user']=$this->home_model->getAllUser();
 			$data['js'] = $this->load->view('include/javascript.php', NULL, TRUE);
 			$data['css'] = $this->load->view('include/css.php', NULL, TRUE);
@@ -419,6 +419,21 @@
 				if($order_id){
 					$this->home_model->delete_order($order_id);
 					redirect('Home/manageOrders', 'refresh');
+				}
+				else {
+					echo 'There is an error';
+				}
+			}
+		}
+		public function delete_shopping_cart($param) {
+			if($this->session->userdata('id')==''){
+				redirect('login');
+			}
+			else {
+				$shopping_cart_id=base64_decode(urldecode($param));
+				if($shopping_cart_id){
+					$this->home_model->delete_shopping_cart_entry($shopping_cart_id);
+					redirect('Home/openShoppingCart', 'refresh');
 				}
 				else {
 					echo 'There is an error';

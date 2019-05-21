@@ -13,65 +13,13 @@
 	
 
 	<?php  
-		if($this->session->userdata('level')==0){
-			//admin
-			echo '<div class="container" style="margin-top: 20px;">';
-			foreach($daftar_user as $du){
-				echo '<h1>'.$du['name'].'</h1>';
-				echo '
-				
-					<table class="table table-stripped table-bordered" id="produk">
-						<thead>
-							<th>Product Name</th>
-							<th>Quantity per Unit</th>
-							<th> Tanggal Transaksi </th>
-							<th>Price</th>
-							<th>Actions</th>
-							<!-- <th></th> -->
-						</thead>
-						<tbody>';
-						foreach ($sc_product as $row) {
-							if($row['id_user']==$du['id']){
-								$id_product = $row["productid"];
-								$product_name = $row["productname"];
-								$qty_per_unit = $row["qty"];
-								$price = $row["price"];
-								$name = $row['username'];
-								$date= $row['date'];
-
-								echo "<tr>";
-									echo "<td>" . $product_name . "</td>";
-									echo "<td>" . $qty_per_unit . "</td>";
-									echo "<td>" . $date . "</td>";
-									echo "<td>" . $price . "</td>";
-									echo "<td> <a>Sent</a> <a>Finish</a></td>";
-									// echo "<td></td>";
-								echo "</tr>";
-								$totalprice += $price;
-							}
-						}
-						echo '<tfoot>
-								<td colspan="3">Total Price</td>
-								<td colspan="1">'.$totalprice.'</td>
-								<td colspan="1"></td>
-							</tfoot>';
-					?>
-					</tbody>
-				</table>
-			<?php }
-			?>				
-
-		<?php } 
-		else if($this->session->userdata('level')==1){
 			//user
 			echo '
 			<div class="container" style="margin-top: 20px;">
 				<table class="table table-stripped table-bordered" id="produk">
 					<thead>
 						<th>Product Name</th>
-						<th>Quantity per Unit</th>
-						<th> Tanggal Transaksi </th>
-						
+						<th>Quantity per Unit</th>						
 						<th>Price</th>
 						<th>Actions</th>
 						<!-- <th></th> -->
@@ -80,35 +28,36 @@
 					<?php 
 
 						foreach ($sc_product as $row) {
-							if($row['id_user']==$this->session->userdata('id')){
-								$id_product = $row["productid"];
-								$product_name = $row["productname"];
-								$qty_per_unit = $row["qty"];
-								$price = $row["price"];
-								$name = $row['username'];
-								$date= $row['date'];
+							$shopping_cart_id = $row["shopping_cart_id"];
+							$product_id = $row['product_id'];
+							$product_name = $row["product_name"];
+							$qty_per_unit = $row["quantity_shopping"];
+							$price = $row["product_price"];
 
-								echo "<tr>";
-									echo "<td>" . $product_name . "</td>";
-									echo "<td>" . $qty_per_unit . "</td>";
-									echo "<td>" . $date . "</td>";
-									
-									echo "<td>Rp. " . $price . ", -</td>";
-									// echo "<td></td>";
-								echo "</tr>";
-								$totalprice += $price;
-							}
+							echo "<tr>";
+								echo "<td><a href='".base_url('index.php/Home/open_detail/').$product_id."'>". $product_name . "</a></td>";
+								echo "<td>" . $qty_per_unit . "</td>";
+								echo "<td>" . $qty_per_unit*$price . "</td>";
+								echo "<td>";
+								echo "<a href='delete_shopping_cart/".urlencode(base64_encode($shopping_cart_id))."'
+									style='margin-right:10px;color:rgb(255,50,150);'>";
+									echo "<button class='btn'>";
+									echo "<span class='glyphicon glyphicon-remove'></span>";
+									echo "</button>";
+								echo "</a>";
+							echo "</td>";
+								// echo "<td></td>";
+							echo "</tr>";
+							$totalprice += $price*$qty_per_unit;
 						}
 						echo '<tfoot>
 								<td colspan="3">Total Price</td>
 								<td colspan="1">Rp. '.$totalprice.', -</td>
-								<td colspan="1"></td>
 							</tfoot>';
 					?>
 					</tbody>
 				</table>
 		
-		<?php  }?>
 
 
 	

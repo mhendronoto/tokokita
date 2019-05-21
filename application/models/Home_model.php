@@ -57,13 +57,17 @@
 				return false;
 			}
 		}
+		function delete_shopping_cart_entry($shopping_cart_id) {
+			$this->db->delete('shopping_carts', array('shopping_cart_id' => $shopping_cart_id)); 
+		}
 
-		function getProductFromCart(){
-			$query = $this->db->query("
-				SELECT t.id 'transactionid',t.id_user 'id_user', u.name 'username', p.product_id 'productid',t.transaction_date 'date',t.is_sent,t.is_finish, p.product_name 'productname', t.quantity 'qty', p.product_price*t.quantity 'price'
-				FROM transaction t, products p, codeigniter_register u
-				WHERE t.id_product = p.product_id AND t.id_user= u.id
-			");
+		function getProductFromCart($user_id){
+			$query = $this->db->query("SELECT s1.shopping_cart_id, p1.product_id, p1.product_name, s1.quantity_shopping, p1.product_price FROM shopping_carts as s1, products as p1 WHERE p1.product_id=s1.product_id AND s1.user_id=$user_id");
+			// $query = $this->db->query("
+			// 	SELECT t.id 'transactionid',t.id_user 'id_user', u.name 'username', p.product_id 'productid',t.transaction_date 'date',t.is_sent,t.is_finish, p.product_name 'productname', t.quantity 'qty', p.product_price*t.quantity 'price'
+			// 	FROM transaction t, products p, codeigniter_register u
+			// 	WHERE t.id_product = p.product_id AND t.id_user= u.id
+			// ");
 
 			return $query->result_array();
 		}
@@ -118,6 +122,10 @@
 			return $query->row();
 		}
 		function get_order_details_by_id($id) {
+			$query = $this->db->query("SELECT p1.product_id, p1.product_name, o2.quantity_shopping, p1.product_price*o2.quantity_shopping as sum_price FROM orders as o1, order_details as o2, products as p1 WHERE o1.order_id=o2.order_id AND o2.product_id=p1.product_id AND o1.order_id=$id");
+			return $query->result_array();
+		}
+		function new_order($user_id) {
 			$query = $this->db->query("SELECT p1.product_id, p1.product_name, o2.quantity_shopping, p1.product_price*o2.quantity_shopping as sum_price FROM orders as o1, order_details as o2, products as p1 WHERE o1.order_id=o2.order_id AND o2.product_id=p1.product_id AND o1.order_id=$id");
 			return $query->result_array();
 		}
