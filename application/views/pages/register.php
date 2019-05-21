@@ -44,17 +44,7 @@
 							<input class="input--style-2" placeholder="Confirm Password" type="password" name="conf_user_password" class="form-control" value="<?php echo set_value('conf_user_password'); ?>" />
 							
 						</div>
-						<span style="color:red"><?php 
-							// echo(form_error('conf_user_password'));
-							if(form_error('conf_user_password')=="The Confirmation Password field is required."){
-								echo(form_error('conf_user_password'));
-							}
-							elseif(form_error('conf_user_password')=="The Confirmation Password field does not match the Password field."){
-								// echo "Password tersebut tidak cocok. Coba lagi."; 
-								echo(form_error('conf_user_password'));
-							}
-
-						?><br></span>
+						<span style="color:red"><?php echo form_error('conf_user_password'); ?><br></span>
 
 						<div class="input-group">
 							<textarea class="form-control input--style-2" placeholder="Enter Address" row='3' cols='55'  name="alamat" value="<?php echo set_value('alamat'); ?>"></textarea>

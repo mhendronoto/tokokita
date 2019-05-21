@@ -29,6 +29,7 @@
 			$this->form_validation->set_rules('user_email', 'Email Address', 'required|trim|valid_email|is_unique[codeigniter_register.email]');
 			$this->form_validation->set_rules('user_password', 'Password', 'required');
 			$this->form_validation->set_rules('conf_user_password','Confirmation Password','required|matches[user_password]');
+			$this->form_validation->set_rules('alamat', 'Address','required');
 			if($this->form_validation->run())
 			{
 				$verification_key = md5(rand());
