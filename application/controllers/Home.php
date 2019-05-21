@@ -398,8 +398,8 @@
 			}
 			else {
 				$user_id=$this->session->userdata('id');
-				$data = $this->home_model->getProductFromCart($this->session->userdata('id'));
-				
+				$this->home_model->create_new_order($user_id);	
+				redirect('Home/orderHistory', 'refresh');			
 			}
 		}
 	}

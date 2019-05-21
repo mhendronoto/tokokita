@@ -125,22 +125,30 @@
 			return $query->result_array();
 		}
 		function create_new_order($user_id) {
-			$values=array(
-				'order_id'=>$order_id,
-				'tracking_number' => $tracking_number,
-				'order_status_id' => $status_id,
-			);		
-			$this->db->where('order_id',$order_id);
-			$this->db->update('orders',$values);
-		}
-		function create_new_order_details($user_id) {
-			$values=array(
-				'order_id'=>$order_id,
-				'tracking_number' => $tracking_number,
-				'order_status_id' => $status_id,
-			);		
-			$this->db->where('order_id',$order_id);
-			$this->db->update('orders',$values);
+			$values_orders=array(
+				'user_id' => $user_id,
+				'order_status_id' => 1,
+				'tracking_number' => 'PENDING',
+			);
+			$data = $this->getProductFromCart($user_id);
+			if(empty($data)) {
+				echo "Shopping cart is empty, Cancelling...";
+				return false;
+			}
+			$this->db->trans_start();
+			$this->db->insert('orders',$values_orders);
+			$last_inserted_id=$this->db->insert_id();
+			foreach($data as $row) {
+				$values_details=array(
+					'order_id'=>$last_inserted_id,
+					'product_id'=>$row['product_id'],
+					'quantity_shopping'=>$row['quantity_shopping'],
+				);		
+				
+				$this->db->insert('order_details',$values_details);
+			}
+			$this->db->delete('shopping_carts', array('user_id' => $user_id));
+			$this->db->trans_complete();
 		}
 		function update_order($order_id, $tracking_number, $status_id) {
 			$values=array(
