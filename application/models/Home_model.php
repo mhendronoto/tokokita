@@ -125,9 +125,23 @@
 			$query = $this->db->query("SELECT p1.product_id, p1.product_name, o2.quantity_shopping, p1.product_price*o2.quantity_shopping as sum_price FROM orders as o1, order_details as o2, products as p1 WHERE o1.order_id=o2.order_id AND o2.product_id=p1.product_id AND o1.order_id=$id");
 			return $query->result_array();
 		}
-		function new_order($user_id) {
-			$query = $this->db->query("SELECT p1.product_id, p1.product_name, o2.quantity_shopping, p1.product_price*o2.quantity_shopping as sum_price FROM orders as o1, order_details as o2, products as p1 WHERE o1.order_id=o2.order_id AND o2.product_id=p1.product_id AND o1.order_id=$id");
-			return $query->result_array();
+		function create_new_order($user_id) {
+			$values=array(
+				'order_id'=>$order_id,
+				'tracking_number' => $tracking_number,
+				'order_status_id' => $status_id,
+			);		
+			$this->db->where('order_id',$order_id);
+			$this->db->update('orders',$values);
+		}
+		function create_new_order_details($user_id) {
+			$values=array(
+				'order_id'=>$order_id,
+				'tracking_number' => $tracking_number,
+				'order_status_id' => $status_id,
+			);		
+			$this->db->where('order_id',$order_id);
+			$this->db->update('orders',$values);
 		}
 		function update_order($order_id, $tracking_number, $status_id) {
 			$values=array(

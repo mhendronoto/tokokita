@@ -440,4 +440,15 @@
 				}
 			}
 		}
+		public function add_new_order() {
+			
+			if($this->session->userdata('id')==''){
+				redirect('login');
+			}
+			else {
+				$user_id=$this->session->userdata('id');
+				$data = $this->home_model->getProductFromCart($this->session->userdata('id'));
+				
+			}
+		}
 	}

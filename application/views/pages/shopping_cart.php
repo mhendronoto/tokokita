@@ -57,7 +57,16 @@
 					?>
 					</tbody>
 				</table>
-		
+			<div class="row">
+				<div class="col-md-3">
+						<a href="<?php echo base_url("index.php/Home/add_new_order"); ?>" class="btn btn-success btn-lg btn-block btn-huge">Confirm Order</a>
+				</div>
+			</div>
+			<div class="text-center">
+				<h3>Mohon setelah menyelesaikan order anda</h3>
+				<h3>Transfer ke rekening 71XXXXXXXXX</h3>
+				<h3>Dan kirim bukti transfer ke ourtoko2019@gmail.com</h3>
+			</div>
 
 
 	
