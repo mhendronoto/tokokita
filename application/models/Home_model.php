@@ -89,10 +89,10 @@
 			return $query->result_array();
 		}
 
-		function addNewProduct($name,$price,$weight,$detail,$imgname){
+		function addNewProduct($name,$price,$weight,$detail,$imgname,$category){
 			$query = $this->db->query("
 				INSERT INTO products(product_name,product_price,product_weight,product_detail,product_stock,product_path_image,category_id)
-				VALUES('$name','$price','$weight','$detail',100,'$imgname',1)");
+				VALUES('$name','$price','$weight','$detail',100,'$imgname',$category)");
 			if($query == true){
 				return true;
 			}
@@ -100,6 +100,16 @@
 				return false;
 			}
 
+		}
+
+		function updateProfileAddress($id,$address){
+			$query = $this->db->query("UPDATE codeigniter_register SET address = '$address' WHERE id=$id");
+			if($query == true){
+				return true;
+			}
+			else{
+				return false;
+			}
 		}
 
 		function getProfileUser($id){

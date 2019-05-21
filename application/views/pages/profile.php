@@ -47,7 +47,7 @@
 			      </div>
 
 			      <div class="modal-body">
-			        <form action="<?php echo site_url('home/updateProfilePass/').$this->session->userdata('id') ?>" method="post" id="form_quantity">
+			        <form action="<?php echo site_url('home/updateProfilePass/').$this->session->userdata('id') ?>" method="post" id="form_pass">
 			        	<div class="form-group">
 					      <label class="control-label" for="name">Change Password :</label>
 					      <div class="">
@@ -63,7 +63,7 @@
 			        </form>
 			      </div>
 			      <div class="modal-footer">
-			      	<button type="submit" class="btn btn-default" form="form_quantity">Confirm</button>
+			      	<button type="submit" class="btn btn-default" form="form_pass">Confirm</button>
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			      </div>
 			    </div>
@@ -83,7 +83,7 @@
 			      </div>
 
 			      <div class="modal-body">
-			        <form action="<?php echo site_url('home/updateProfileAddress/').$this->session->userdata('id') ?>" method="post" id="form_quantity">
+			        <form action="<?php echo site_url('home/updateProfileAddress/').$this->session->userdata('id') ?>" method="post" id="form_address">
 
 					    <div class="form-group">
 					      <label class="control-label" for="name">Change Address :</label>
@@ -94,7 +94,7 @@
 			        </form>
 			      </div>
 			      <div class="modal-footer">
-			      	<button type="submit" class="btn btn-default" form="form_quantity">Confirm</button>
+			      	<button type="submit" class="btn btn-default" form="form_address">Confirm</button>
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			      </div>
 			    </div>

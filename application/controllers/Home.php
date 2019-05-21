@@ -192,12 +192,15 @@
 
 
 		public function updateProfilePass($id){
+			// $this->home_model->updateProfileAddress($id,$this->input->post('new_address'));
 			// $this->register_model($id,$this->input->post('new_pass'));
 			redirect('home');
 		}
 
 		public function updateProfileAddress($id){
+			$this->home_model->updateProfileAddress($id,$this->input->post('new_address'));
 			redirect('home');
+			
 		}
 
 		public function addNewProduct(){
@@ -260,9 +263,10 @@
 				$price  = $this->input->post('price');
 				$weight = $this->input->post('weight');
 				$detail = $this->input->post('detail');
+				$category = $this->input->post('category');
 				$imgname2 = "assets/images/".$imagename;
 				echo $imgname2;
-				$id = $this->home_model->addNewProduct($name,$price,$weight,$detail,$imgname2);
+				$id = $this->home_model->addNewProduct($name,$price,$weight,$detail,$imgname2,$category);
 				$this->session->set_flashdata('message', 'Product berhasil ditambahkan');
 				redirect('home/addNewProduct');
 			}

@@ -59,9 +59,23 @@
 	        <textarea type="text" class="form-control" id="detail" placeholder="Enter Product Detail" name="detail"></textarea>
 	      </div>
 	    </div>
-
-		<input type='file' name='fileGambar' size='20' />
-
+	     <div class="form-group">
+				<label class="control-label col-sm-2">Status</label>
+				<div class="col-sm-10">
+               <select class="form-control" name="category">
+                  <option value="1">(Pick an option...)</option>
+                  <option value="1">Makanan</option>
+                  <option value="2">Minuman</option>
+                  <option value="3">Mainan</option>
+                  <option value="4">Alat Tulis</option>
+                  <option value="5">Buku</option>
+                  <option value="6">Daily</option>
+               </select><br>
+				</div>
+			</div>
+		<div class="form-group">	
+			<input type='file' name='fileGambar' size='20' />
+		</div>
 	    <div class="form-group">        
 	      <div class="col-sm-offset-2 col-sm-10">
 	        <button type="submit" class="btn btn-default">Submit</button>
