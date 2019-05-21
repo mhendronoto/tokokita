@@ -133,7 +133,6 @@
 				redirect('login');
 			}
 			else{
-
 				$res = $this->home_model->addToShoppingCart($product_id,$this->input->post('qty'),$this->session->userdata('id'));
 				if($res){
 					redirect(base_url('index.php/Home/open_detail/').$product_id); //biar pulangnya tetap di DETAIL PRODUK
