@@ -45,47 +45,9 @@
 						<p><b>'.$row->product_name.'</b></p>
 						<p>Rp. '.$row->product_price.', -</p>
 						<a class="btn btn-info" href="'.base_url('index.php/Home/open_detail/').$row->product_id.'">Details</a>
-						<a class="btn btn-warning" data-toggle="modal" data-target="#myModal">Add to Cart</a>
+						<a class="btn btn-warning" href="'.base_url('index.php/Home/open_detail/').$row->product_id.'">Add to Cart</a>
 					';	
 					$output .= '
-						</div>
-						<!-- Modal -- -->
-						<div id="myModal" class="modal fade" role="dialog">
-						  <div class="modal-dialog modal-sm">
-
-						   <!-- Modal content- -->
-						    <div class="modal-content">
-						      <div class="modal-header">
-						        <button type="button" class="close" data-dismiss="modal">&times;</button>
-						        <h4 class="modal-title">Quantity :</h4>
-						      </div>
-
-						      <div class="modal-body">
-						        <form action="'. site_url("/Home/add_to_shopping_cart_home/".$row->product_id).'" method="post" id="form_quantity">
-						        	<div class="form-group">
-										<div class="input-group col-sm-6" >
-									          <span class="input-group-btn">
-									              <button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="qty">
-									                <span class="glyphicon glyphicon-minus"></span>
-									              </button>
-									          </span>
-									          <input type="text" name="qty" class="form-control input-number" value="1" min="1" max="100">
-									          <span class="input-group-btn">
-									              <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="qty">
-									                  <span class="glyphicon glyphicon-plus"></span>
-									              </button>
-									          </span>
-									    </div>
-						        	</div>
-						        </form>
-						      </div>
-						      <div class="modal-footer">
-						      	<button type="submit" class="btn btn-default" form="form_quantity">Confirm</button>
-						        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						      </div>
-						    </div>
-
-						  </div>
 						</div>
 					';
 				}
@@ -123,20 +85,7 @@
 						<p><b>'.$row->product_name.'</b></p>
 						<p>'.$row->product_price.'</p>
 						<a class="btn btn-info" href="'.base_url('index.php/Home/open_detail/').$row->product_id.'">Details</a>
-						<a class="btn btn-warning" href="'.base_url('index.php/Home/add_to_shopping_cart_home/').$row->product_price.'">Add to Cart</a>
-						<div class="input-group col-sm-6" >
-						          <span class="input-group-btn">
-						              <button type="button" class="btn btn-danger btn-number"  data-type="minus" data-field="qty">
-						                <span class="glyphicon glyphicon-minus"></span>
-						              </button>
-						          </span>
-						          <input type="text" name="qty" class="form-control input-number" value="1" min="1" max="100">
-						          <span class="input-group-btn">
-						              <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="qty">
-						                  <span class="glyphicon glyphicon-plus"></span>
-						              </button>
-						          </span>
-						  </div>
+						<a class="btn btn-warning" href="'.base_url('index.php/Home/open_detail/').$row->product_id.'">Add to Cart</a>
 					';	
 					$output .= '
 						</div>
