@@ -12,14 +12,24 @@
 <body>
 	<?php echo $header; ?>
 	<div class="container">
-	  <h2>Profile</h2>
-	  <?php
-	  		foreach($profile as $p){
-	  			echo '<h4>Nama  : '.$p['name'].'</h4>';
-	  			echo '<h4>Email : '.$p['email'].'</h4>';
-	  		}
-	  ?>
-	  <a href="#" class="btn btn-default active">Change Password</a>
+	  <h2>Profile</h2><hr>
+	  <div class="row mx-1 my-1 text-center">
+            <div class="col-sm-12">
+                <img style="width:256px;height:256px;border-radius:50%;" src="../../assets/images/logo/asset_tokokita_pemweb_logo-0.png"/>
+            </div>
+      </div>
+      <div class="row mx-1 my-1 text-center">
+		  <?php
+		  		foreach($profile as $p){
+		  			echo '<h4>Nama  : '.$p['name'].'</h4>';
+		  			echo '<h4>Email : '.$p['email'].'</h4>';
+		  		}
+		  ?>
+		  <a href="#" class="btn btn-default active">Change Password</a>
+	  </div>
+
+	  <br>
+	  
 	  <!-- <form class="form-horizontal" action="/action_page.php">
 	    <div class="form-group">
 	      <label class="control-label col-sm-2" for="email">Email:</label>
@@ -46,8 +56,8 @@
 	      </div>
 	    </div>
 	  </form> -->
-	</div>
-	
+
+	<hr>
 	<?php echo $footer; ?>
 </body>
 </html>

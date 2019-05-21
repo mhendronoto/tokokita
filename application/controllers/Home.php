@@ -204,6 +204,25 @@
 
 		}
 
+		public function editProduct(){
+			if($this->session->userdata('id')==''){
+				redirect('login');
+			}
+			$this->load->view('include/javascript.php');
+			$this->load->view('include/css.php');
+			$this->load->view('pages/header.php');
+			
+
+			$crud= new grocery_CRUD();
+			$crud->set_table('products');
+			
+			$output=$crud->render();
+			$data['list'] = $output;
+
+			$this->load->view('pages/editProduct.php',$output);
+			$this->load->view('pages/footer.php');
+		}
+
 		public function validationNewProduct(){
 			$this->form_validation->set_rules('name', 'name', 'required');
 			$this->form_validation->set_rules('price', 'price', 'required');
