@@ -128,22 +128,6 @@
 			
 		}
 
-		public function add_to_shopping_cart_home($product_id){
-			if($this->session->userdata('id')==''){
-				redirect('login');
-			}
-			else{
-				// $res = $this->home_model->addToShoppingCart($product_id);
-				$res = $this->home_model->addToShoppingCart($product_id,$this->input->post('qty'),$this->session->userdata('id'));
-				if($res){
-					redirect(base_url('index.php/Home')); //biar pulangnya ke HOME
-				}
-				else{
-					echo 'There is an error';
-				}
-			}
-		}
-
 		public function add_to_shopping_cart_detail($product_id){
 			if($this->session->userdata('id')==''){
 				redirect('login');
