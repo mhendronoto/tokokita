@@ -40,7 +40,8 @@
 					'name'  => $this->input->post('user_name'),
 					'email'  => $this->input->post('user_email'),
 					'password' => $encrypted_password,
-					'verification_key' => $verification_key
+					'verification_key' => $verification_key,
+					'address' => $this->input->post('alamat')
 				);
 				$id = $this->register_model->insert($data);
 				$this->session->set_flashdata('message', 'Register berhasil');
