@@ -72,15 +72,6 @@
 			return $query->result_array();
 		}
 
-		function addToTransaction($id_user,$id_product,$quantity,$total){
-			$query = $this->db->query("INSERT INTO transaction(id_user, id_product,transaction_date,quantity,total_price) VALUES($id_user,$id_product,NOW(),$quantity,$total)");
-			if($query == true){
-				return true;
-			}
-			else{
-				return false;
-			}
-		}
 
 		function getAllUser(){
 			$query = $this->db->query("
